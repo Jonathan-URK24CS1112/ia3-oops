@@ -13,12 +13,12 @@ public class NurseryAppMock extends JFrame {
 
     public NurseryAppMock() {
         // Window setup
-        setTitle("🌿 Plant Nursery Management System (Mock Version)");
+        setTitle("Plant Nursery Management System (Mock Version)");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
-        // ---------- MAIN PANEL ----------
+        // MAIN PANEL
         JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
 
         // Header label
@@ -26,7 +26,7 @@ public class NurseryAppMock extends JFrame {
         header.setFont(new Font("SansSerif", Font.BOLD, 22));
         mainPanel.add(header, BorderLayout.NORTH);
 
-        // ---------- TABLE ----------
+        // TABLE
         tableModel = new DefaultTableModel(
                 new Object[]{"ID", "Name", "Category", "Price ($)", "Stock"}, 0
         );
@@ -34,7 +34,7 @@ public class NurseryAppMock extends JFrame {
         JScrollPane scrollPane = new JScrollPane(plantTable);
         mainPanel.add(scrollPane, BorderLayout.CENTER);
 
-        // ---------- BOTTOM PANEL ----------
+        // BOTTOM PANEL
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 10));
         JButton refreshBtn = new JButton("🔄 Refresh");
         JButton buyBtn = new JButton("🛒 Buy Plant");
@@ -49,7 +49,7 @@ public class NurseryAppMock extends JFrame {
         // Add everything to window
         add(mainPanel);
 
-        // ---------- EVENT HANDLERS ----------
+        // EVENT HANDLERS 
         refreshBtn.addActionListener(e -> loadPlantData());
         buyBtn.addActionListener(e -> handlePurchase());
 
@@ -57,7 +57,7 @@ public class NurseryAppMock extends JFrame {
         loadPlantData();
     }
 
-    // Loads mock plant data (no DB yet)
+    // Loads plant data
     private void loadPlantData() {
         tableModel.setRowCount(0);
         System.out.println("[DEBUG] Loading plant data..."); // TODO: Replace with actual DB logic later
@@ -77,7 +77,7 @@ public class NurseryAppMock extends JFrame {
         System.out.println("[DEBUG] Finished loading mock data.");
     }
 
-    // Handles buying a plant (simulation)
+    // Buying a plant
     private void handlePurchase() {
         int selectedRow = plantTable.getSelectedRow();
         if (selectedRow == -1) {
@@ -108,7 +108,7 @@ public class NurseryAppMock extends JFrame {
             totalBill += subtotal;
             totalLabel.setText(String.format("Total: Rs.2f", totalBill));
 
-            // Simulated stock update
+            // Stock update
             System.out.println("[DEBUG] Updating stock for " + name + " (new stock = " + (stock - qty) + ")"); 
             System.out.println("[DEBUG] Will replace this with SQL UPDATE later.");
 
@@ -121,7 +121,6 @@ public class NurseryAppMock extends JFrame {
     }
 
     public static void main(String[] args) {
-        // Always run Swing apps on the event dispatch thread
         SwingUtilities.invokeLater(() -> {
             NurseryAppMock app = new NurseryAppMock();
             app.setVisible(true);
