@@ -1,2 +1,4 @@
 # ia3-oops
-code for IA3 OOPS (sem 3 project)
+code for IA3 OOPS (sem 3 project)  
+
+def coded manually
